@@ -28,40 +28,43 @@ class ChatTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: textController,
-      focusNode: focusNode,
-      style: style,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor:
-            color ?? Theme.of(context).colorScheme.outline.withOpacity(0.1),
-        isDense: true,
-        contentPadding: const EdgeInsets.all(10),
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.only(
-            topRight: isReplyToMessage
-                ? const Radius.circular(0)
-                : const Radius.circular(18),
-            topLeft: isReplyToMessage
-                ? const Radius.circular(0)
-                : const Radius.circular(18),
-            bottomLeft: const Radius.circular(18),
-            bottomRight: const Radius.circular(18),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: textController,
+        focusNode: focusNode,
+        style: style,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor:
+              color ?? Theme.of(context).colorScheme.outline.withOpacity(0.1),
+          isDense: true,
+          contentPadding: const EdgeInsets.all(10),
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.only(
+              topRight: isReplyToMessage
+                  ? const Radius.circular(0)
+                  : const Radius.circular(18),
+              topLeft: isReplyToMessage
+                  ? const Radius.circular(0)
+                  : const Radius.circular(18),
+              bottomLeft: const Radius.circular(18),
+              bottomRight: const Radius.circular(18),
+            ),
           ),
+          hintText: hintText,
+          hintStyle: hintStyle,
+          prefixIcon: prefixIcon,
         ),
-        hintText: hintText,
-        hintStyle: hintStyle,
-        prefixIcon: prefixIcon,
+        autofocus: autofocus,
+        keyboardType: TextInputType.multiline,
+        maxLines: 5,
+        minLines: 1,
+        textCapitalization: TextCapitalization.sentences,
+        onChanged: onChanged,
+        textDirection: getTextDirection(textController.text),
       ),
-      autofocus: autofocus,
-      keyboardType: TextInputType.multiline,
-      maxLines: 5,
-      minLines: 1,
-      textCapitalization: TextCapitalization.sentences,
-      onChanged: onChanged,
-      textDirection: getTextDirection(textController.text),
     );
   }
 }
